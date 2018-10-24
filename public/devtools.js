@@ -1,1 +1,1 @@
-chrome.devtools.panels.create('React Spit', null, 'panel.html');
+chrome.devtools.panels.create('React Spit', null, 'index.html');
