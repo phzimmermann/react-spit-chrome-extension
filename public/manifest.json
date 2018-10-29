@@ -31,7 +31,7 @@
     "128": "images/get_started128.png"
   },
   "options_page": "options.html",
-  "web_accessible_resources" : ["/js/my_file.js"],
+  "web_accessible_resources" : ["/js/injected_file.js"],
   "manifest_version": 2,
   "content_security_policy": "script-src 'self' 'sha256-GgRxrVOKNdB4LrRsVPDSbzvfdV4UqglmviH9GoBJ5jk='"
 }

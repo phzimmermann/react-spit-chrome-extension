@@ -1,6 +1,7 @@
-var s = document.createElement('script');
+/* global chrome */
+const s = document.createElement('script');
 // TODO: add "script.js" to web_accessible_resources in manifest.json
-s.src = chrome.extension.getURL('/js/my_file.js');
+s.src = chrome.extension.getURL('/js/injected_file.js');
 s.onload = function() {
   this.remove();
 };
@@ -14,7 +15,7 @@ window.addEventListener('message', function(event) {
     return;
   }
 
-  var message = event.data;
+  const message = event.data;
 
   // Only accept messages that we know are ours
   if (typeof message !== 'object' || message === null || !message.spit_event) {
