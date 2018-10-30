@@ -50,3 +50,21 @@ h2 {
   position: absolute;
   font-size: 0.7em;
 }
+
+.inputSearch {
+  background-color: transparent;
+  border: none;
+  border-left: 1px solid #268bd2;
+  margin-left: 1em;
+  padding-left: 0.5em;
+  color: white;
+  font-size: 1em;
+}
+
+.commitButton {
+  margin-left: 1em;
+  border: 1px solid #268bd2;
+  background-color: transparent;
+  color: white;
+  font-size: 1em;
+}

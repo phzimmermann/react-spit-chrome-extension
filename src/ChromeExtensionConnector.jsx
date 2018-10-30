@@ -66,24 +66,54 @@ export default class ChromeExtensionConnector extends React.Component {
     backgroundPageConnection.onMessage.addListener(this.onMessage);
   }
 
+  commitVersion() {
+    const currentDataStack = this.state.containers[this.state.selectedIdentifier].datas;
+    this.setState({
+      containers: {
+        ...this.state.containers,
+        [this.state.selectedIdentifier]: {
+          datas: [currentDataStack[currentDataStack.length - 1]],
+        },
+      },
+    });
+  }
+
   render() {
     return (
       <div>
         <div>
-          <h2>Active Spit Containers</h2>
+          <h2>
+            Active Spit Containers{' '}
+            <input
+              className="inputSearch"
+              type="text"
+              onChange={evt => this.setState({ search: evt.target.value })}
+              placeholder="Search..."
+              value={this.state.search}
+            />
+          </h2>
           <div className="menu menu-container">
-            {Object.keys(this.state.containers).map(identifier => (
-              <div
-                className={this.state.selectedIdentifier === identifier ? 'selected item' : 'item'}
-                onClick={() => this.setState({ selectedIdentifier: identifier, selectedVersion: 0 })}
-              >
-                {identifier}
-              </div>
-            ))}
+            {Object.keys(this.state.containers)
+              .filter(identifier => identifier.includes(this.state.search) || !this.state.search)
+              .map(identifier => (
+                <div
+                  className={this.state.selectedIdentifier === identifier ? 'selected item' : 'item'}
+                  onClick={() => this.setState({ selectedIdentifier: identifier, selectedVersion: 0 })}
+                >
+                  {identifier}
+                </div>
+              ))}
           </div>
         </div>
         <div>
-          <h2>Versions</h2>
+          <h2>
+            Versions
+            {this.state.selectedIdentifier && (
+              <button className="commitButton" onClick={() => this.commitVersion()}>
+                Commit
+              </button>
+            )}
+          </h2>
           <div className="menu">
             {this.state.selectedIdentifier !== null &&
               this.state.containers[this.state.selectedIdentifier].datas.map((data, index) => (
